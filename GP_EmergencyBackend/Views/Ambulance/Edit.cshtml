@@ -1,0 +1,164 @@
+﻿@model GP_EmergencyBackend.Models.real_accident
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<html>
+    
+    
+    <head>
+
+          
+<link href="~/Content/Site.css" rel="stylesheet" /> 
+ <script src="~/Scripts/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNiqU2i67ojpnVjsQkadaqiIIxCZMoOrE"></script>
+<script type="text/javascript" src="~/Scripts/jquery.googlemap.js"></script>
+
+
+              <script type="text/javascript">
+                  $(function () {
+                      $("#map").googleMap({
+                          type: "SATELLITE "
+                      });
+
+                       var Lat2 = '@Model.latitude';
+                       var Long2 = '@Model.longitude';
+                  
+                        $("#map").addMarker({ coords: [Lat2, Long2] });
+                
+                  document.getElementById("test").innerHTML += ' @Model.latitude "<br/>"  @Model.longitude <br/> ----------<br/> ';
+            
+           var Lat = '@ViewBag.Latitude';
+                      var Long = '@ViewBag.Longitude';
+
+                      $("#map").addWay({
+                          start:"Othman Ibn Effan ,Madinet Dikirnis,Dekernes ,Dakahlia Governorate", // Postal address for the start marker (obligatory)
+                          end: [Lat2, Long2], // Postal Address or GPS coordinates for the end marker (obligatory)
+                          route: 'way', // Block's ID for the route display (optional)
+                          langage: 'english' // language of the route detail (optional)
+                      });
+
+                  })
+
+</script>
+<title>@ViewBag.Title = "Edit"</title>
+
+
+    </head>
+    
+    <body>
+
+         <div id="map" style="width: 800px; height:500px;"></div>
+        <div id="test"></div>
+
+
+        @using( Ajax.BeginForm(new AjaxOptions{
+        
+        
+        
+        
+        
+        
+        }))
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>real_accident</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.accident_ID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.accident_ID)
+            @Html.ValidationMessageFor(model => model.accident_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.area_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.area_id)
+            @Html.ValidationMessageFor(model => model.area_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.country_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.country_id)
+            @Html.ValidationMessageFor(model => model.country_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.city_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.city_id)
+            @Html.ValidationMessageFor(model => model.city_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.location)
+            @Html.ValidationMessageFor(model => model.location)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.latitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.latitude)
+            @Html.ValidationMessageFor(model => model.latitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.longitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.longitude)
+            @Html.ValidationMessageFor(model => model.longitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.happened_time)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.happened_time)
+            @Html.ValidationMessageFor(model => model.happened_time)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solved)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solved)
+            @Html.ValidationMessageFor(model => model.solved)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+    </body>
+
+
+</html>
+
+<h2>Edit</h2>
+

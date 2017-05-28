@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrafficModelStoreContainer" CdmEntityContainer="TrafficEntities">
+    <EntitySetMapping Name="real_accident">
+      <EntityTypeMapping TypeName="TrafficModel.real_accident">
+        <MappingFragment StoreEntitySet="real_accident">
+          <ScalarProperty Name="accident_ID" ColumnName="accident_ID" />
+          <ScalarProperty Name="area_id" ColumnName="area_id" />
+          <ScalarProperty Name="country_id" ColumnName="country_id" />
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="happened_time" ColumnName="happened_time" />
+          <ScalarProperty Name="solved" ColumnName="solved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

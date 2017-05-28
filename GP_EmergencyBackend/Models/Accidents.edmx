@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TrafficModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="TrafficModelStoreContainer">
+          <EntitySet Name="real_accident" EntityType="TrafficModel.Store.real_accident" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="real_accident">
+          <Key>
+            <PropertyRef Name="accident_ID" />
+          </Key>
+          <Property Name="accident_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="area_id" Type="int" Nullable="false" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="location" Type="nvarchar(max)" />
+          <Property Name="latitude" Type="decimal" Nullable="false" Precision="10" Scale="8" />
+          <Property Name="longitude" Type="decimal" Nullable="false" Precision="10" Scale="8" />
+          <Property Name="happened_time" Type="datetime" Nullable="false" />
+          <Property Name="solved" Type="bit" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrafficModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TrafficEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="real_accident" EntityType="TrafficModel.real_accident" />
+        </EntityContainer>
+        <EntityType Name="real_accident">
+          <Key>
+            <PropertyRef Name="accident_ID" />
+          </Key>
+          <Property Name="accident_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="area_id" Type="Int32" Nullable="false" />
+          <Property Name="country_id" Type="Int32" />
+          <Property Name="city_id" Type="Int32" />
+          <Property Name="location" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="latitude" Type="Decimal" Nullable="false" Precision="10" Scale="8" />
+          <Property Name="longitude" Type="Decimal" Nullable="false" Precision="10" Scale="8" />
+          <Property Name="happened_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="solved" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TrafficModelStoreContainer" CdmEntityContainer="TrafficEntities">
+          <EntitySetMapping Name="real_accident">
+            <EntityTypeMapping TypeName="TrafficModel.real_accident">
+              <MappingFragment StoreEntitySet="real_accident">
+                <ScalarProperty Name="accident_ID" ColumnName="accident_ID" />
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="happened_time" ColumnName="happened_time" />
+                <ScalarProperty Name="solved" ColumnName="solved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

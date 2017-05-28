@@ -1,0 +1,88 @@
+﻿@model IEnumerable<GP_EmergencyBackend.Models.real_accident>
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+      @*<meta http-equiv="refresh" content="5; URL=~/Controllers/AmbulanceController/whole_map.cs">*@
+
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+      <title>Location Map</title>
+
+  
+<link href="~/Content/Site.css" rel="stylesheet" /> 
+           <script src="~/Scripts/jquery-3.1.1.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNiqU2i67ojpnVjsQkadaqiIIxCZMoOrE"></script>
+<script type="text/javascript" src="~/Scripts/jquery.googlemap.js"></script>
+     
+      
+      <script type="text/javascript">
+       $(function () {
+           $("#map").googleMap({
+               type: "SATELLITE "
+           });
+         
+
+                @foreach (var item in Model) {
+              if (item.solved==false)
+              {   
+                   @: var Lat2 = '@item.latitude';
+           @: var Long2 = '@item.longitude';
+                  
+                     @:   $("#map").addMarker({ coords: [Lat2, Long2] });
+                
+                  @:document.getElementById("test").innerHTML += ' @item.latitude "<br/>"  @item.longitude <br/> ----------<br/> ' ;
+             
+              }
+          
+          }
+
+        
+
+          
+
+            var Lat = '@ViewBag.Latitude';
+            var Long = '@ViewBag.Longitude';
+         
+       })
+
+
+
+
+
+    //setInterval(function()
+    //{
+    //    // not sure what the controller name is
+    //    $.post('<%= Url.Action("Ambulance", "whole_map") %>', function(data) {
+    //        // Update the ItemList html element
+    //        $('#mapupdate').html(data);
+    //    });
+    //}
+    //, 30);
+
+          setTimeout(function () { location.reload(); }, 5000);
+          
+
+</script>
+      
+
+
+  </head>
+  <body onload="javascript:setTimeout{document.location.reload(true);}, 500">    
+      
+        <div id="mapupdate">
+
+    <div id="map" style="width: 800px; height:500px;"></div>
+      </div>
+
+
+    <div id="test"></div>
+
+  </body>
+</html>

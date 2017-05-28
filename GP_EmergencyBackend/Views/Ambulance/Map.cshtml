@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+      <title>Location Map</title>
+  </head>
+  <body>
+
+    <h3>My Google Maps Demo</h3>
+
+      <!-- >Check ViewBag Values <-->
+
+  Lat:    @ViewBag.Latitude<br />
+      Long:@ViewBag.Longitude
+    <div id="map"></div>
+    <script> var Lat = '@ViewBag.Latitude';
+            var Long = '@ViewBag.Longitude';
+        function initMap() {
+           // 31.087694
+            // 31.601167 
+
+            
+           
+            var uluru = { lat: Lat, lng: Long };
+            document.getElementById("lating").innerHTML = Lat + " " +Long;
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru
+            
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+                
+
+            });
+
+            //Check Js Variables
+            
+
+        }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNiqU2i67ojpnVjsQkadaqiIIxCZMoOrE&callback=initMap">
+    </script>
+
+      <div id="lating"></div>
+  </body>
+</html>

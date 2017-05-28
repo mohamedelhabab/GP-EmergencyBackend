@@ -1,0 +1,99 @@
+﻿@model GP_EmergencyBackend.Models.real_accident
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>real_accident</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.accident_ID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.accident_ID)
+            @Html.ValidationMessageFor(model => model.accident_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.area_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.area_id)
+            @Html.ValidationMessageFor(model => model.area_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.country_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.country_id)
+            @Html.ValidationMessageFor(model => model.country_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.city_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.city_id)
+            @Html.ValidationMessageFor(model => model.city_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.location)
+            @Html.ValidationMessageFor(model => model.location)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.latitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.latitude)
+            @Html.ValidationMessageFor(model => model.latitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.longitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.longitude)
+            @Html.ValidationMessageFor(model => model.longitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.happened_time)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.happened_time)
+            @Html.ValidationMessageFor(model => model.happened_time)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solved)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solved)
+            @Html.ValidationMessageFor(model => model.solved)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,81 @@
+﻿@model GP_EmergencyBackend.Models.real_accident
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>real_accident</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.accident_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.accident_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.area_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.area_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.country_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.country_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.city_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.city_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.location)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.location)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.latitude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.latitude)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.longitude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.longitude)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.happened_time)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.happened_time)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.solved)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solved)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
