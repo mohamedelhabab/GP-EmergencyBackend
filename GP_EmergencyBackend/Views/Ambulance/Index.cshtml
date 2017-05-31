@@ -1,51 +1,87 @@
 ﻿@model IEnumerable<GP_EmergencyBackend.Models.real_accident>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Accidents";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<html>
+    <head>
+
+       
+
+
+
+      
+        
+        <script src="~/Scripts/jquery-3.1.1.js"></script>
+
+
+                             
+
+        
+    </head>
+    
+    
+    
+    <body >
+                    
+
+
+
+
+<h2>Accidents</h2>
+
+
+
+<form >
+
+     <div id="list">
+
+
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.accident_ID)
+            @Html.DisplayNameFor(model => model.accident_ID) |
+        </th>           
+
+        <th>
+            @Html.DisplayNameFor(model => model.area_id) |
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.area_id)
+            @Html.DisplayNameFor(model => model.country) |
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.country_id)
+            @Html.DisplayNameFor(model => model.city) |
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.city_id)
+            @Html.DisplayNameFor(model => model.location) |
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.location)
+            @Html.DisplayNameFor(model => model.latitude) |
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.latitude)
+            @Html.DisplayNameFor(model => model.longitude) |
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.longitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.happened_time)
+            @Html.DisplayNameFor(model => model.happened_time) |
         </th>
         <th>
             @Html.DisplayNameFor(model => model.solved)
         </th>
+
+       
         <th></th>
     </tr>
 
+    
 @foreach (var item in Model) {
 
+    
     if (item.solved==false)
     {
-          <tr>
+        
+          <tr style="text-align:center">
         <td>
             @Html.DisplayFor(modelItem => item.accident_ID)
         </td>
@@ -53,10 +89,10 @@
             @Html.DisplayFor(modelItem => item.area_id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.country_id)
+            @Html.DisplayFor(modelItem => item.country.country_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.city_id)
+            @Html.DisplayFor(modelItem => item.city.city_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.location)
@@ -75,14 +111,25 @@
         </td>
         <td>
             
-            @Html.ActionLink("Edit", "Edit", new {  id=item.accident_ID }) |
+            @Html.ActionLink("View On Map", "Edit", new {  id=item.accident_ID }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+@*            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             
         </td>
     </tr>
     }
   
 }
-
 </table>
+   
+
+
+
+
+     </div>
+    </form>
+
+         </body>
+
+
+</html>

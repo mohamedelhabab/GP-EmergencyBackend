@@ -6,12 +6,6 @@
 
       @*<meta http-equiv="refresh" content="5; URL=~/Controllers/AmbulanceController/whole_map.cs">*@
 
-    <style>
-      #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
       <title>Location Map</title>
 
   
@@ -32,12 +26,11 @@
                 @foreach (var item in Model) {
               if (item.solved==false)
               {   
-                   @: var Lat2 = '@item.latitude';
-           @: var Long2 = '@item.longitude';
+                   @: var Lat = '@item.latitude';
+           @: var Long = '@item.longitude';
                   
-                     @:   $("#map").addMarker({ coords: [Lat2, Long2] });
-                
-                  @:document.getElementById("test").innerHTML += ' @item.latitude "<br/>"  @item.longitude <br/> ----------<br/> ' ;
+                     @:   $("#map").addMarker({ coords: [Lat, Long] });
+
              
               }
           
@@ -46,9 +39,6 @@
         
 
           
-
-            var Lat = '@ViewBag.Latitude';
-            var Long = '@ViewBag.Longitude';
          
        })
 
@@ -56,29 +46,17 @@
 
 
 
-    //setInterval(function()
-    //{
-    //    // not sure what the controller name is
-    //    $.post('<%= Url.Action("Ambulance", "whole_map") %>', function(data) {
-    //        // Update the ItemList html element
-    //        $('#mapupdate').html(data);
-    //    });
-    //}
-    //, 30);
-
-          setTimeout(function () { location.reload(); }, 5000);
-          
 
 </script>
       
 
 
   </head>
-  <body onload="javascript:setTimeout{document.location.reload(true);}, 500">    
+  <body >    
       
         <div id="mapupdate">
 
-    <div id="map" style="width: 800px; height:500px;"></div>
+    <div id="map" style="width: 1000px; height:500px;"></div>
       </div>
 
 

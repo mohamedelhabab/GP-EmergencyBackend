@@ -4,10 +4,39 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TrafficModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TrafficModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="TrafficModelStoreContainer">
+          <EntitySet Name="city" EntityType="TrafficModel.Store.city" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="country" EntityType="TrafficModel.Store.country" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="real_accident" EntityType="TrafficModel.Store.real_accident" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_city_country" Association="TrafficModel.Store.FK_city_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="FK_real_accident_city" Association="TrafficModel.Store.FK_real_accident_city">
+            <End Role="city" EntitySet="city" />
+            <End Role="real_accident" EntitySet="real_accident" />
+          </AssociationSet>
+          <AssociationSet Name="FK_real_accident_country" Association="TrafficModel.Store.FK_real_accident_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="real_accident" EntitySet="real_accident" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="city_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="country_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="real_accident">
           <Key>
             <PropertyRef Name="accident_ID" />
@@ -22,13 +51,62 @@
           <Property Name="happened_time" Type="datetime" Nullable="false" />
           <Property Name="solved" Type="bit" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_city_country">
+          <End Role="country" Type="TrafficModel.Store.country" Multiplicity="1" />
+          <End Role="city" Type="TrafficModel.Store.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_real_accident_city">
+          <End Role="city" Type="TrafficModel.Store.city" Multiplicity="0..1" />
+          <End Role="real_accident" Type="TrafficModel.Store.real_accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="real_accident">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_real_accident_country">
+          <End Role="country" Type="TrafficModel.Store.country" Multiplicity="0..1" />
+          <End Role="real_accident" Type="TrafficModel.Store.real_accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="real_accident">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TrafficModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="TrafficEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="real_accident" EntityType="TrafficModel.real_accident" />
+          <EntitySet Name="cities" EntityType="TrafficModel.city" />
+          <EntitySet Name="countries" EntityType="TrafficModel.country" />
+          <AssociationSet Name="FK_city_country" Association="TrafficModel.FK_city_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="city" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_real_accident_city" Association="TrafficModel.FK_real_accident_city">
+            <End Role="city" EntitySet="cities" />
+            <End Role="real_accident" EntitySet="real_accident" />
+          </AssociationSet>
+          <AssociationSet Name="FK_real_accident_country" Association="TrafficModel.FK_real_accident_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="real_accident" EntitySet="real_accident" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="real_accident">
           <Key>
@@ -43,7 +121,64 @@
           <Property Name="longitude" Type="Decimal" Nullable="false" Precision="10" Scale="8" />
           <Property Name="happened_time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="solved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="city" Relationship="TrafficModel.FK_real_accident_city" FromRole="real_accident" ToRole="city" />
+          <NavigationProperty Name="country" Relationship="TrafficModel.FK_real_accident_country" FromRole="real_accident" ToRole="country" />
         </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Type="Int32" Name="city_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="city_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="country_id" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="TrafficModel.FK_city_country" FromRole="city" ToRole="country" />
+          <NavigationProperty Name="real_accident" Relationship="TrafficModel.FK_real_accident_city" FromRole="city" ToRole="real_accident" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Type="Int32" Name="country_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="country_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="cities" Relationship="TrafficModel.FK_city_country" FromRole="country" ToRole="city" />
+          <NavigationProperty Name="real_accident" Relationship="TrafficModel.FK_real_accident_country" FromRole="country" ToRole="real_accident" />
+        </EntityType>
+        <Association Name="FK_city_country">
+          <End Type="TrafficModel.country" Role="country" Multiplicity="1" />
+          <End Type="TrafficModel.city" Role="city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_real_accident_city">
+          <End Type="TrafficModel.city" Role="city" Multiplicity="0..1" />
+          <End Type="TrafficModel.real_accident" Role="real_accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="real_accident">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_real_accident_country">
+          <End Type="TrafficModel.country" Role="country" Multiplicity="0..1" />
+          <End Type="TrafficModel.real_accident" Role="real_accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="real_accident">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -62,6 +197,23 @@
                 <ScalarProperty Name="longitude" ColumnName="longitude" />
                 <ScalarProperty Name="happened_time" ColumnName="happened_time" />
                 <ScalarProperty Name="solved" ColumnName="solved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="TrafficModel.city">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="TrafficModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

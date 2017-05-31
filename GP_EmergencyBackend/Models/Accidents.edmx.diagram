@@ -6,6 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="748ff0455e304ba3b7cdd32d80c20c81" Name="Diagram1">
         <EntityTypeShape EntityType="TrafficModel.real_accident" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrafficModel.city" Width="1.5" PointX="10.881684170515129" PointY="20.637844870163988" />
+        <EntityTypeShape EntityType="TrafficModel.country" Width="1.5" PointX="8.8530404087403056" PointY="19.152792805411291" />
+        <AssociationConnector Association="TrafficModel.FK_city_country" />
+        <AssociationConnector Association="TrafficModel.FK_real_accident_city" />
+        <AssociationConnector Association="TrafficModel.FK_real_accident_country" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

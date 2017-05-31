@@ -18,8 +18,15 @@ namespace GP_EmergencyBackend.Controllers
 
         public ActionResult Index()
         {
+
+            
             return View(db.real_accident.ToList());
         }
+        public PartialViewResult Accidents()
+        {
+            return PartialView("_Accidents",db.real_accident.ToList());
+        }
+
         public ActionResult whole_map()
         {   
             ViewBag.Latitude = db.real_accident.Select(a => a.latitude).First();

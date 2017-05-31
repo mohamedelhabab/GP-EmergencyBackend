@@ -186,6 +186,12 @@
       <DependentUpon>Accidents.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\city.cs">
+      <DependentUpon>Accidents.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\country.cs">
+      <DependentUpon>Accidents.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\real_accident.cs">
       <DependentUpon>Accidents.tt</DependentUpon>
     </Compile>
@@ -252,6 +258,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Accidents.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\finger.jpg" />
+    <Content Include="Images\face.jpg" />
     <Content Include="Models\Accidents.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Accidents.edmx</DependentUpon>
@@ -331,6 +339,7 @@
     <Content Include="Views\Ambulance\Delete.cshtml" />
     <Content Include="Views\Ambulance\Map.cshtml" />
     <Content Include="Views\Ambulance\Location.cshtml" />
+    <Content Include="Views\Ambulance\_Accidents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

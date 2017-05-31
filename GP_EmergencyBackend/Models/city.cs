@@ -12,19 +12,18 @@ namespace GP_EmergencyBackend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class real_accident
+    public partial class city
     {
-        public int accident_ID { get; set; }
-        public int area_id { get; set; }
-        public Nullable<int> country_id { get; set; }
-        public Nullable<int> city_id { get; set; }
-        public string location { get; set; }
-        public decimal latitude { get; set; }
-        public decimal longitude { get; set; }
-        public System.DateTime happened_time { get; set; }
-        public bool solved { get; set; }
+        public city()
+        {
+            this.real_accident = new HashSet<real_accident>();
+        }
     
-        public virtual city city { get; set; }
+        public int city_id { get; set; }
+        public string city_name { get; set; }
+        public int country_id { get; set; }
+    
         public virtual country country { get; set; }
+        public virtual ICollection<real_accident> real_accident { get; set; }
     }
 }

@@ -10,21 +10,21 @@ namespace GP_EmergencyBackend.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "System To Monitor The Accidents Which Occure Right Now.";
 
             return View();
         }
-
+            
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "The System";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Developers Contacts";
 
             return View();
         }

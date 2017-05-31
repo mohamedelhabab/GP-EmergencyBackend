@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Emergency Home Page";
 }
 @section featured {
     <section class="featured">
@@ -9,37 +9,38 @@
                 <h2>@ViewBag.Message</h2>
             </hgroup>
             <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+                
+               <b> Sub-System of ETRS System </b>used to monitor the current status of the roads ,<br />
+                 Accidents which occure right now with a detailed view and and a map to show
+                the accidents location and the shortest path to it .
+               
             </p>
         </div>
     </section>
 }
-<h3>We suggest the following:</h3>
+<h3>This system consist of Subsystems <b><br />1-ETRS user mobile application</b><br /> <b>2-ETRS Ambulance Back-end ( Web / Mobile Application )</b>:</h3>
 <ol class="round">
     <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
+        <h5>ETRS User Mobile Application</h5>
+        The ETRS user mobile application 
+        used to send accident report from eyewitness or card driver while the ETRS 
+        Ambulance mobile application will be used for receive and manage the reports incoming from users.
         <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
     </li>
 
     <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
+        <h5>ETRS Ambulance Back-end ( Web / Mobile Application)</h5>
+        The Ambulance application will receive report and set ambulance in active mode.
+        <br />Monitor the current status of the roads ,
+                 Accidents which occure right now with a detailed view and and a map to show
+                the accidents location and the shortest path to it
         <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
     </li>
 
-    <li class="three">
+   @* <li class="three">
         <h5>Find Web Hosting</h5>
         You can easily find a web hosting company that offers the right mix of features
         and price for your applications.
         <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
+    </li>*@
 </ol>

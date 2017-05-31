@@ -19,24 +19,29 @@
               <script type="text/javascript">
                   $(function () {
                       $("#map").googleMap({
-                          type: "SATELLITE "
+                          type: "ROADMAP"
+                      });
+                      //TERRAIN
+                       var Lat = '@Model.latitude';
+                       var Long= '@Model.longitude';
+                  
+                      $("#map").addMarker({
+                      
+
+                          coords: [Lat, Long]
                       });
 
-                       var Lat2 = '@Model.latitude';
-                       var Long2 = '@Model.longitude';
-                  
-                        $("#map").addMarker({ coords: [Lat2, Long2] });
-                
-                  document.getElementById("test").innerHTML += ' @Model.latitude "<br/>"  @Model.longitude <br/> ----------<br/> ';
+    //test if model contains latitude and longitude            
+@*  document.getElementById("test").innerHTML += ' @Model.latitude "<br/>"  @Model.longitude <br/> ----------<br/> ';*@
             
-           var Lat = '@ViewBag.Latitude';
-                      var Long = '@ViewBag.Longitude';
+          @* var Lat = '@ViewBag.Latitude';
+                      var Long = '@ViewBag.Longitude';*@
 
                       $("#map").addWay({
-                          start:"Othman Ibn Effan ,Madinet Dikirnis,Dekernes ,Dakahlia Governorate", // Postal address for the start marker (obligatory)
-                          end: [Lat2, Long2], // Postal Address or GPS coordinates for the end marker (obligatory)
+                          start: "Dar El-Salam,Athar an Nabi,Misr Al Qadimah,Cairo Governorate", // Postal address for the start marker (obligatory)
+                          end: [Lat, Long], // Postal Address or GPS coordinates for the end marker (obligatory)
                           route: 'way', // Block's ID for the route display (optional)
-                          langage: 'english' // language of the route detail (optional)
+                          langage: 'english' // language of the route detail (optional),
                       });
 
                   })
@@ -49,23 +54,12 @@
     
     <body>
 
-         <div id="map" style="width: 800px; height:500px;"></div>
+         <div id="map" style="width: 1000px; height:500px;"></div>
         <div id="test"></div>
 
 
-        @using( Ajax.BeginForm(new AjaxOptions{
-        
-        
-        
-        
-        
-        
-        }))
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-
-    <fieldset>
+   <fieldset>
         <legend>real_accident</legend>
 
         <div class="editor-label">
@@ -76,28 +70,22 @@
             @Html.ValidationMessageFor(model => model.accident_ID)
         </div>
 
+     
+
         <div class="editor-label">
-            @Html.LabelFor(model => model.area_id)
+            @Html.LabelFor(model => model.country.country_name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.area_id)
-            @Html.ValidationMessageFor(model => model.area_id)
+            @Html.EditorFor(model => model.country.country_name)
+            @Html.ValidationMessageFor(model => model.country.country_name)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.country_id)
+            @Html.LabelFor(model => model.city.city_name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.country_id)
-            @Html.ValidationMessageFor(model => model.country_id)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.city_id)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.city_id)
-            @Html.ValidationMessageFor(model => model.city_id)
+            @Html.EditorFor(model => model.city.city_name)
+            @Html.ValidationMessageFor(model => model.city.city_name)
         </div>
 
         <div class="editor-label">
@@ -108,29 +96,7 @@
             @Html.ValidationMessageFor(model => model.location)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.latitude)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.latitude)
-            @Html.ValidationMessageFor(model => model.latitude)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.longitude)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.longitude)
-            @Html.ValidationMessageFor(model => model.longitude)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.happened_time)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.happened_time)
-            @Html.ValidationMessageFor(model => model.happened_time)
-        </div>
+       
 
         <div class="editor-label">
             @Html.LabelFor(model => model.solved)
@@ -144,15 +110,15 @@
             <input type="submit" value="Save" />
         </p>
     </fieldset>
-}
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
+        @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
 
 
     </body>
